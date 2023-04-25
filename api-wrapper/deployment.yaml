@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: api-wrapper
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: api-wrapper
+  template:
+    metadata:
+      labels:
+        app: api-wrapper
+    spec:
+      containers:
+      - name: api-wrapper
+        image: api-wrapper
+        imagePullPolicy: Never
+        ports:
+        - containerPort: 8080
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: api-wrapper
+spec:
+  selector:
+   app: api-wrapper
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 8080
