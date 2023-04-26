@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: api-wrapper
+  name: api-wrapper-depl
 spec:
   replicas: 1
   selector:
@@ -22,7 +22,7 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: api-wrapper
+  name: api-wrapper-svc
 spec:
   selector:
    app: api-wrapper
